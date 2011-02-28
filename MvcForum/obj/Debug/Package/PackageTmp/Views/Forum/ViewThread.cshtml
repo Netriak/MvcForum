@@ -1,0 +1,55 @@
+﻿@model MvcForum.Models.ThreadViewModel
+
+@{
+    ViewBag.Title = Model.ThreadTitle;
+}
+
+<!-- Page navigator -->
+@Html.PageNavigationList("ViewThread", Model.Page, Model.LastPage, Model.Id, "threadview")
+<!-- Thread title -->
+<div class="PostTitle Outline">
+    <strong>Model.ThreadTitle</strong>
+        @if (User.IsInRole("Admin")) { 
+    <ul class="postmenu">
+        <li>
+            @Html.ActionLink("Delete Thread", "DeleteThread", new { id = Model.Id })
+        </li>
+    </ul>
+        } 
+</div>
+@{int N = 0; }
+@foreach (var item in Model.PostList)
+{ 
+    <table id="Post_@(++N)" class="Post">
+        <colgroup>
+            <col class="PostPoster"/>
+            <col />
+        </colgroup>
+        <tr>
+            <td colspan="2" class="Head">
+                    @item.PostTime.ToForumDateString() 
+                <ul class="postmenu">
+                        @if (item.AllowEdit)
+                        {
+                        if (Model.Page > 1 || item != Model.PostList[0])
+                            { 
+                        <li>@Html.ActionLink("Delete", "DeletePost", new { id = item.PostID })</li>
+                        } 
+                        <li>@Html.ActionLink("Edit", "Edit", new { id = item.PostID })</li>
+                        } 
+                        <li>@Html.ActionLink("Quote", "Reply", new { id = Model.Id, QuoteId = item.PostID })</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="PostPoster">
+                @item.Poster.Name 
+            </td>
+            <td class="PostText">@item.PostText</td>
+        </tr>
+    </table>
+} 
+<!-- Page navigator -->
+@Html.PageNavigationList("ViewThread", Model.Page, Model.LastPage, Model.Id, "threadview threadviewbottom") 
+@Html.ImageActionLink("Post reply", "Images/reply.gif", "Reply", new { id = Model.Id})
+

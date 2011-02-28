@@ -1,0 +1,93 @@
+﻿@model AdminUserGroupModel
+
+@{ ViewBag.Title = "Edit User Group"; }
+
+<div class="FloatMiddle">
+
+<fieldset class="FloatMiddle">
+    @Html.PageNavigationList("", Model.page, Model.LastPage, Model.id, "threadview threadviewbottom")
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <table id="UserTable">
+            @foreach (var User in Model.AllUsers)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="Users" value="@User.ID" />@User.Name
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "User", new { id = User.ID})
+                    </td>
+                </tr>
+            }
+        </table>
+        <input type="submit" name="UsersAddButton" value="Add to Group" @if(Model.CurrentGroupUsers == null){<text>disabled="disabled"</text>}/>
+    }
+</fieldset>
+
+<fieldset class="FloatMiddle">
+    <div class="linkbox">
+        @foreach (var Group in Model.UserGroups)
+        {
+            if (Group.ID == Model.id)
+            {
+                <div>@Group.Name</div>
+            }
+            else
+            {
+                @Html.ActionLink(Group.Name, "UserGroup", new { id = Group.ID, page = Model.page })
+            }
+        }
+    </div>
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <input type="submit" name="NewGroup" value="New" />
+            <input type="submit" name="DeleteGroup" value="Delete" @if(!Model.CanBeDeleted || Model.CurrentGroupUsers.Count != 0){<text>disabled="disabled"</text>}/>
+        }
+    </div>
+</fieldset>
+
+<fieldset class="FloatMiddle">
+    @using (Html.BeginForm())
+    {
+        bool First = true;
+        if (Model.CurrentGroupUsers == null)
+        {
+            <select size="10" disabled="disabled"></select>
+        }
+        else
+        {
+            @Html.AntiForgeryToken()
+            <select size="10" multiple="multiple" name="Users">
+                @foreach (var User in Model.CurrentGroupUsers)
+                {
+                    <option value="@User.ID" @if(!Model.HasPermissions && Authentication.Identity.UserID == User.ID){<text>disabled="disabled"</text>} else if(First){First = false;<text>selected="selected"</text>}>@User.Name</option>
+                }
+            </select>
+        }
+        <div>
+            <input type="submit" name="UsersRemoveButton" value="Remove from Group" @if (First){<text>disabled="disabled"</text>}/>
+        </div>
+    }
+</fieldset>
+
+<fieldset class="FloatMiddle">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.TextBoxFor(M => M.Name, Model.CanBeDeleted ? new { maxlength = 15 } : (object)new { disabled = "disabled" })
+        <div>@Html.CheckBoxFor(M => M.IsAllowedSearch, Model.HasPermissions ? null : new { disabled = "disabled" })Allow Search</div>
+        <input type="submit" name="UpdateGroup" value="Update" />
+    }
+</fieldset>
+</div>
+
+@if (Model.HasPermissions)
+{
+    Html.RenderPartial("PermissionLinkPartial", Model);
+}
+

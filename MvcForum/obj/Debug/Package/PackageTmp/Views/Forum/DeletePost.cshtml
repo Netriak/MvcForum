@@ -1,0 +1,9 @@
+﻿@model MvcForum.Models.ThreadInfoViewModel
+
+@{ ViewBag.Title = "Delete post confirmation";
+   }
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken() 
+    <input type="submit" value="Delete post" name="confirmbutton"/>
+} 

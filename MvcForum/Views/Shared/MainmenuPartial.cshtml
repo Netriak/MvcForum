@@ -1,0 +1,14 @@
+﻿@if (Request.IsAuthenticated)
+{
+    if (Authentication.Identity.IsAdmin)
+    {
+        @Html.ActionLink("Admin Panel", "Overview", "Admin") @:|
+    }
+    @Html.ActionLink("User Settings", "Settings", "Account") @:|
+    @Html.ActionLink("My Posts", "MyPosts", "Forum") @:|
+}
+else
+{
+    @Html.ActionLink("Register", "Register", "Account") @:|
+}
+@Html.ActionLink("Recent Posts", "RecentPosts", "Forum")

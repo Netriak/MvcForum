@@ -1,0 +1,36 @@
+﻿@model MvcForum.Models.MasterViewModel
+
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>@ViewBag.Title</title>
+    <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery-1.4.4.min.js" type="text/javascript"></script>
+    @RenderSection("Head", required: false);
+    <script src="/Scripts/MvcForum.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="page">
+        <div id="header">
+            <div id="title">
+                <h1>Mvc Forum</h1>
+            </div>
+              
+            <div id="logindisplay">
+                @Html.Partial("LogOnPartial")
+            </div> 
+            <div id="menucontainer">
+                <ul id="menu">
+                    @Html.MainMenu(Model)
+                </ul>
+            </div>
+        </div>
+        <div id="main">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

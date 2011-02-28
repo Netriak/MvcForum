@@ -1,0 +1,61 @@
+﻿@model WritePostViewModel
+
+@{ ViewBag.Title = Model.Title; }
+
+@section head {
+    <script src="@Url.Content("~/Scripts/jquery.markitup.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/markitup.css")" rel="stylesheet" type="text/css" />
+}
+<div class="PostTitle Outline Center"><strong>@Model.Title</strong></div>
+<table class="Post Edit">
+    <tr><td>
+    @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken() 
+            @Html.ValidationSummary(false) 
+            <div class="Edit2">
+                @if (Model.EditTitle)
+                { 
+                <table class="Edit2">
+                    <tr>
+                        <td class="Label"> @Html.LabelFor(model => model.ThreadTitle)</td>
+                        <td> @Html.TextBoxFor(model => model.ThreadTitle, new { maxlength = 100 })</td>
+                    </tr>
+                </table>
+                }
+                @Html.TextAreaFor(model => model.PostText)  
+            </div>
+            <div class="Center">
+                <input type="submit" value="Submit" name="button"/>
+                <input type="submit" value="Preview" name="button" id="PreviewButton"/>
+            </div>
+    } 
+    </td></tr>
+</table>
+<div id="preview" class="@(!Model.ShowPost ? "hidden" : "")">
+@if (Model.EditTitle) { 
+    <div id="PostTitle" class="PostTitle Outline">
+        <strong>@Model.ThreadTitle</strong>
+    </div>
+}  
+<table id="Post_1" class="Post">
+    <colgroup>
+            <col class="PostPoster"/>
+            <col />
+    </colgroup>
+    <tr>
+    <td colspan="2" class="Head">
+        @DateTime.Now 
+        <ul class="postmenu">
+            <li><div>Quote</div></li>
+        </ul>
+    </td>
+    </tr>
+    <tr>
+    <td class="PostPoster">
+        @Context.User.Identity.Name 
+    </td>
+    <td id="PostTextPreview" class="PostText"> @Model.PostHtml </td>
+    </tr>
+</table>
+</div>
+

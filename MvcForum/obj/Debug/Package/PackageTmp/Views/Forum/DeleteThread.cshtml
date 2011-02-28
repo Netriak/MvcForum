@@ -1,0 +1,8 @@
+﻿@model MvcForum.Models.ThreadInfoViewModel
+
+@{ ViewBag.Title = "Delete thread confirmation";}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken() 
+    <input type="submit" value="Delete thread" name="confirmbutton"/>
+} 

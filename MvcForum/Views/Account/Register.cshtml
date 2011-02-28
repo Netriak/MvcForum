@@ -1,0 +1,52 @@
+﻿@model RegisterViewModel
+
+@{ ViewBag.Title = "Register"; }
+
+@section Head {
+    <script src="/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+}
+
+<div id="infotitel">
+    Create a New Account
+</div>
+<div id="infobody">
+    <div id="informational">
+        <h3>Use the form below to create a new account.</h3>
+        Passwords are required to be a minimum of 6 characters in length.
+    </div>
+    @using (Html.BeginForm()) 
+    { 
+        @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.") 
+        <div class="infoentry">
+                <div class="entry">
+                    @Html.LabelFor(m => m.Reg_Username) 
+                    @Html.TextBoxFor(m => m.Reg_Username, new { maxlength = 25 })
+                    @Html.ValidationMessageFor(m => m.Reg_Username) 
+                </div>
+                        
+                <div class="entry">
+                    @Html.LabelFor(m => m.Reg_Email) 
+                    @Html.TextBoxFor(m => m.Reg_Email, new { maxlength = 70 })
+                    @Html.ValidationMessageFor(m => m.Reg_Email) 
+                </div>
+                        
+                <div class="entry">
+                    @Html.LabelFor(m => m.Reg_Password) 
+                    @Html.PasswordFor(m => m.Reg_Password, new { maxlength = 150 })
+                    @Html.ValidationMessageFor(m => m.Reg_Password) 
+                </div>
+                
+                <div class="entry">
+                    @Html.LabelFor(m => m.ConfirmPassword) 
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { maxlength = 150 })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword) 
+                </div>
+
+                <input type="submit" value="Register" />
+        </div>
+    } 
+</div>
+
+
+

@@ -1,0 +1,24 @@
+﻿@model SearchResultsViewModel
+
+@{
+    ViewBag.Title = "Search Results";
+    int Count = Model.ThreadInfoList.Count; 
+}
+
+You searched for @(Model.SearchString).
+@if (@Model.ResultCount != 1)
+{
+    @:There were @Model.ResultCount results.
+}
+else
+{
+    @:There was 1 result.
+}
+@if (Model.ResultCount > Count)
+{
+    @:However, the maximum number of returned search results is @(Count).
+}
+@if (Count > 0)
+{
+    Html.RenderPartial("ThreadListPartial", Model.ThreadInfoList);
+}

@@ -1,0 +1,5 @@
+D:\Projects\MvcForum\MvcForum\bin\MvcForum.dll
+D:\Projects\MvcForum\MvcForum\bin\MvcForum.pdb
+D:\Projects\MvcForum\MvcForum\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\MvcForum\MvcForum\obj\Debug\MvcForum.dll
+D:\Projects\MvcForum\MvcForum\obj\Debug\MvcForum.pdb

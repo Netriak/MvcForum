@@ -1,0 +1,15 @@
+﻿@model NotFoundViewModel
+
+@{
+	ViewBag.Title = String.Format("{0} Not Found", Model.WhatItIsThatIsntFound);
+    string NotFound = @Model.WhatItIsThatIsntFound.ToLowerInvariant();
+}
+<div id="infotitel">
+    @Model.WhatItIsThatIsntFound Not Found
+</div>
+<div id="infobody">
+    <div id="informational">
+        <h3>The @NotFound wasn't found.</h3>
+        The @NotFound has either been deleted or has never existed.
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿@model AdminPermissionLinkEditors
+
+@helper Selector(string Name, bool Fixed, IEnumerable<AdminNamedID> IDList)
+{
+    if (!Fixed)
+    {
+        <select name="@Name">
+            @foreach (var Entity in IDList)
+            {
+                <option value="@Entity.ID">@Entity.Name</option>
+            }
+        </select>
+    }
+    else
+    {
+        <select disabled="disabled"><option>@Model.FixedNamedID.Name</option></select>
+        <input type="hidden" value="@Model.FixedNamedID.ID" name="@Name" />
+    }
+}
+
+<table class="PermissionLinkList">
+    @foreach (var Link in Model.PermissionLinkList)
+    {
+        <tr>
+            <td class="LinkEntry">
+                @Html.ActionLink(Link.UserGroup.Name, "UserGroup", new { id = Link.UserGroup.ID })
+            </td>
+            <td class="LinkEntry">
+                @Html.ActionLink(Link.Category.Name, "Category", new { id = Link.Category.ID })
+            </td>
+            <td class="LinkEntry">
+                @Html.ActionLink(Link.PermissionSet.Name, "PermissionSet", new { id = Link.PermissionSet.ID })
+            </td>
+            <td class="Center TableButton">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" value="@Link.UserGroup.ID" name="UserGroup" />
+                    <input type="hidden" value="@Link.PermissionSet.ID" name="PermissionSet" />
+                    <input type="hidden" value="@Link.Category.ID" name="Category" />
+                    <input type="submit" name="permissionslinkbutton" value="Delete" />
+                }
+            </td>
+        </tr>
+    }
+</table>
+    
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <table class="PermissionLinkList">
+        <tr>
+            <td>@Selector("UserGroup", Model.Fixed == AdminPermissionLinkEditors.FixedSet.UserGroups, Model.UserGroups)</td>
+            <td>@Selector("Category", Model.Fixed == AdminPermissionLinkEditors.FixedSet.Categories, Model.Categories)</td>
+            <td>@Selector("PermissionSet", Model.Fixed == AdminPermissionLinkEditors.FixedSet.PermissionSets, Model.PermissionSets)</td>
+            <td class="Center TableButton"><input type="submit" value="Add" name="permissionslinkbutton"/></td>
+        </tr>
+    </table>
+}

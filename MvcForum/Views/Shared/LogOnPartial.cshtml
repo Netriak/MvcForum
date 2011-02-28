@@ -1,0 +1,16 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <text>
+    Welcome @Authentication.Identity.Name
+    (@Html.ActionLink("Log Off", "LogOff", "Account"))
+    </text>
+}
+else
+{
+    using (Html.BeginForm("LogOn", "Account"))
+    { 
+        @Html.TextBox("Username", "Username") 
+        @Html.Password("Password", "Password") 
+        <input type="submit" value="Login" />
+    }
+}

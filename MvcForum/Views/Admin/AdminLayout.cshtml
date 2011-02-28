@@ -1,0 +1,29 @@
+﻿@section head
+{
+    @RenderSection("head", false)
+}
+
+@{
+    Layout = "~/Views/Shared/SiteLayout.cshtml";
+    var Title = "Admin Control Panel";
+    if (!String.IsNullOrEmpty(ViewBag.Title))
+    {
+        Title += String.Format(": {0}", ViewBag.Title);   
+    }
+    ViewBag.Title = Title;
+}
+
+<div id="infotitel">
+    Administration Panel
+</div>
+<div id="infobody">
+    <div id="adminmenu">
+        @Html.ActionLink("Overview", "Overview", "Admin")
+        @Html.ActionLink("Categories", "Category", "Admin")
+        @Html.ActionLink("User Groups", "UserGroup", "Admin")
+        @Html.ActionLink("Permission Sets", "PermissionSet", "Admin")
+    </div>
+    <div id="adminbody">
+        @RenderBody()
+    </div>
+</div>

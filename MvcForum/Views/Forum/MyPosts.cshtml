@@ -1,0 +1,15 @@
+﻿@model MyPostsViewModel
+
+@{
+    ViewBag.Title = "My Posts";
+}
+@if (Model.ThreadInfoList.Count > 0)
+{
+    @Html.PageNavigationList("MyPosts", Model.Page, Model.PageCount, 0, "threadview")
+    Html.RenderPartial("ThreadListPartial", Model.ThreadInfoList);
+    @Html.PageNavigationList("MyPosts", Model.Page, Model.PageCount, 0, "threadview threadviewbottom") 
+}
+else
+{
+    @:You have not made any posts yet.
+}

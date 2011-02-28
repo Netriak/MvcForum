@@ -1,0 +1,36 @@
+﻿---------------- Permissions system:
+
+Requirements:
+- User groups of some sorts. One has to be able to add a user to an administrator group to give them full authority.
+- One can be moderator of some forums, but not others.
+- Said moderation rights are defined once, not twice.
+- Said rights can be modified.
+- There can be restrictions on registered/banned and various other things on a per forum basis.
+- Again, said restrictions are defined once. Do not repeat yourself and all that.
+
+Idea:
+- There are two things:
+	User groups and permission sets
+
+	Users are members of one or more user groups. The everyone group includes everyone, therefore one or more.
+	User groups do not have rights per se. Exception: the buildin administrator group?
+	Permission sets define rights
+	Possibly they can deny rights too. But that is a potential future point, and irrelevant for the initial design.
+	The link that ties all together is a special link table containing the category, permission set and user group.
+	The category part in said set is optional (nullable) the other two are mandatory.
+	So permission sets can be attached to multiple categories and user groups.
+	And user groups and categories can each have multiple permission sets.
+
+	How to perform a permission check:
+	'Grab' all link sets with a category that is the current category or one of its parents or null.
+	Filter that set on user groups that the user is part of.
+	Search the permission sets that are left for one that contains the required permission.
+	If one is found: Allow
+	Else: Deny
+
+	Non-category specific permissions are saved in the role table. No need for an extra table for them.
+
+
+
+
+

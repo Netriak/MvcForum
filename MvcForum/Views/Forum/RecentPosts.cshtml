@@ -1,0 +1,7 @@
+﻿@model RecentPostsViewModel
+
+@{
+    ViewBag.Title = "Recent Posts";
+}
+
+@{Html.RenderPartial("ThreadListPartial", Model.ThreadInfoList);}

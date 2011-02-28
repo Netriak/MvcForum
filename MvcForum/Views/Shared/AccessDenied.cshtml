@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Access Denied";
+}
+<div id="infotitel">
+    Access Denied
+</div>
+<div id="infobody">
+    <div id="informational">
+        @if (Request.IsAuthenticated)
+        {
+            <h3>You do not have permission to perform that action.</h3>
+            @:Either log in with an account with the appropriate permissions, or navigate away from this page.
+        }
+        else
+        {   
+            <h3>You have to log in in order to perform that action.</h3>
+            @:if you do not have an account, you can @Html.ActionLink("register", "Register", "Account") one.
+        }
+    </div>
+</div>
+

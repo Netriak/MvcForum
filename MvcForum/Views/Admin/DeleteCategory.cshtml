@@ -1,0 +1,40 @@
+﻿@model AdminDeleteCategoryViewModel
+
+@{
+    ViewBag.Title = "Delete Category";
+}
+
+@helper AdminNamedIDListHelper(string Name, IEnumerable<AdminNamedID> List)
+{
+    <select name="@Name">
+        @foreach (var Option in List)
+        {
+            <option value="@Option.ID">@Option.Name</option>    
+        }
+    </select>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+    You are about to delete the category "@Model.CategoryName".
+    </p>
+    if (Model.ThreadCount > 0)
+    {
+        <p>
+            This category has @Model.ThreadCount threads. What should be done with them after the category is deleted? <br />
+            <input type="radio" name="MovePostOption" value="Delete" checked="checked"/> Delete the threads. <br />
+            <input type="radio" name="MovePostOption" value="Move" /> Move the threads to: 
+            @AdminNamedIDListHelper("MovePostsDestination", Model.MovePostsToOptions)
+        </p>
+    }
+    if (Model.HasChildCategories)
+    {
+        <p>
+            Move child categories to:
+            @AdminNamedIDListHelper("MoveChildrenDestination", Model.MoveChildrenToOptions)
+        </p>
+    }
+    <input type="submit" name="DeleteConfirm" value="Delete Category" />
+}

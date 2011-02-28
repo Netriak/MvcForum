@@ -1,0 +1,81 @@
+﻿@model AdminCategoryModel
+
+@{
+    ViewBag.Title = "Edit Category";
+    bool IsReadOnly = Model.CurrentCategory == Model.Root;
+}
+
+@helper AdminNamedIDListHelper(string Name, IEnumerable<AdminNamedID> List)
+{
+    <select name="@Name" @if (List.Count() == 0) {<text>disabled="disabled"</text>}>
+        @foreach (var Option in List)
+        {
+            <option value="@Option.ID">@Option.Name</option>    
+        }
+    </select>
+}
+
+@helper RenderCategoryTree(AdminCategory Root)
+{
+    <span @if(Root == Model.CurrentCategory){<text>class="CurrentCategory"</text>}>
+        @Html.ActionLink(Root.Name, "Category", new { id = Root.id }) 
+    </span>
+    <ul>
+        @foreach (var Category in Root.Children)
+        {
+            <li>
+                @RenderCategoryTree(Category)
+            </li>
+        }
+    </ul>
+}
+
+@helper CheckboxHelper(string Name, bool Checked, bool Disabled)
+{
+    <div><input type="checkbox" name="@Name"@if (Checked) { <text>checked="checked"</text>} @if (Disabled) { <text>disabled="disabled"</text>}/>@Name</div>
+}
+
+<div class="FloatMiddle">
+    <fieldset class="FloatMiddle">
+        <div class="ListTree">
+            @RenderCategoryTree(Model.Root)
+        </div>
+    </fieldset>
+    <fieldset id="UpdateCategory" class="FloatMiddle">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div>@Html.TextBoxFor(B => B.CurrentCategory.Name, IsReadOnly ? (object)new { disabled = "disabled" } : new { maxlength = 100 })</div>
+            <div class="NumberInput">Priority: @Html.TextBoxFor(B => B.CurrentCategory.Priority, IsReadOnly ? (object)new { disabled = "disabled" } : new { maxlength = 2 })</div>
+            @CheckboxHelper("Allow Posts", Model.CurrentCategory.AllowPosts, IsReadOnly)
+            @CheckboxHelper("Inherit Permissions", Model.CurrentCategory.InheritPermissions, IsReadOnly)
+            <input type="submit" name="UpdateCategory" value="Update Category" @if (Model.MoveCategoryToOptions.Count == 0)
+                                                                               {<text>disabled="disabled"</text>}/>
+        }
+    </fieldset>
+    
+    <fieldset class="FloatMiddle">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @AdminNamedIDListHelper("MoveToDestination", Model.MoveCategoryToOptions);
+            <input type="submit" name="MoveCategory" value="Move Category" @if (Model.MoveCategoryToOptions.Count == 0)
+                                                                           {<text>disabled="disabled"</text>}/>
+        }
+
+        <div class="FloatRight">@Html.ActionLinkButton("Delete Category", "DeleteCategory", new { id = Model.CurrentCategory.id }, IsReadOnly)</div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <input type="submit" name="NewCategory" value="New Category" />
+        }
+    </fieldset>
+</div>
+
+
+
+
+@{
+    Html.RenderPartial("PermissionLinkPartial", Model);
+}

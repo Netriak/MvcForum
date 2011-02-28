@@ -1,0 +1,698 @@
+﻿body
+{
+    background-color: #426493;
+    font-size: .75em;
+    font-family: Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+    color: Black;
+}
+
+a:link, a:visited
+{
+    color: #22229C;
+    text-decoration: underline;
+}
+a:hover, a:active
+{
+    color: #FF4400;
+    text-decoration: underline;
+}
+
+a.ThreadTitle { text-decoration:none; }
+
+.Inherit
+{
+    color:inherit !important;
+    text-decoration:inherit !important;
+}
+
+p, ul
+{
+    margin-bottom: 20px;
+    line-height: 1.6em;
+}
+
+a.ImageLink img { border-style:none; }
+
+.s { text-decoration:line-through; }
+.u { text-decoration:underline; }
+
+img { max-width:100%; }
+
+.hidden { display:none !important; }
+
+a.buttonlink { text-decoration:none; }
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 1.5em;
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1
+{
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+h2
+{
+    padding: 0 0 10px 0;
+}
+h3
+{
+    font-size: 1.2em;
+}
+h4
+{
+    font-size: 1.1em;
+}
+h5, h6
+{
+    font-size: 1em;
+}
+
+/* this rule styles <h2> tags that are the 
+first child of the left and right table columns */
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+    margin-top: 0;
+}
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+/* you can specify a greater or lesser percentage for the 
+page width. Or, you can specify an exact pixel width. */
+.page
+{
+    width: 90%;
+    max-width:108.333333em;/* Too wide a page doesn't read comfortably*/
+    min-width:50em; /* Better to create a scrollbar than to destroy the layout completely*/
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#header
+{
+    position: relative;
+    margin-bottom: 0px;
+    color: #000;
+    padding: 0;
+}
+
+#header h1
+{
+    font-weight: bold;
+    padding: 5px 0;
+    margin: 0;
+    color: #fff;
+    border: none;
+    line-height: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px !important;
+}
+
+#main
+{
+	margin-bottom:15px;
+	min-height:600px;
+    padding: 25px;
+    background-color: #fff;
+    -moz-border-radius:25px; /* Firefox */
+    border-radius:25px; 
+}
+
+#footer
+{
+    color: #999;
+    padding: 10px 0;
+    text-align: center;
+    line-height: normal;
+    margin: 0;
+    font-size: .9em;
+}
+
+/* Linkbox system  
+-------------------------------------------------*/
+div.linkbox
+{
+	border:1px solid Black;
+	padding:1px;
+	width:12em;
+	height:18em;
+	overflow-y:scroll;
+	display:inline-block;
+	vertical-align:top;
+	margin-right:2px;
+}
+
+div.linkbox>div
+{
+	background-color:#3399ff;
+	color:White;
+}
+
+div.linkbox>a
+{
+	display:block;
+	text-decoration:none;
+}
+
+/* Master Site layout 
+--------------------------------------------*/
+#menucontainer { margin-bottom:25px; border:1px solid black;}
+
+#menucontainer>div 
+{
+	font-size:1.0833333em;
+	line-height:2em;
+	height:2em;
+	padding:0px 5px;
+}
+
+#mainmenu 
+{
+	border-top:1px solid #888888;
+	background-color: #cccccc; /* Fallback (Opera): */
+    background: -moz-linear-gradient(top, #dddddd, #bbbbbb); /* Mozilla: */
+    background: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#bbbbbb)); /* Chrome, Safari:*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#dddddd', EndColorStr='#bbbbbb', GradientType=0)"; /* IE8 */
+}
+
+#mainmenu a { color:#222222; text-decoration:none; }
+#mainmenu a:hover { border-bottom:1px dotted #222222; }
+
+/* account bar*/
+#accountbar
+{
+	color:White;
+	background-color: #4B6CA6; /* Fallback (Opera): */
+    background: -moz-linear-gradient(top, #4B6CA6, #768FB9); /* Mozilla: */
+    background: -webkit-gradient(linear, left top, left bottom, from(#4B6CA6), to(#768FB9)); /* Chrome, Safari:*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#4B6CA6', EndColorStr='#768FB9', GradientType=0)"; /* IE8 */
+}
+
+#accountbar>div { display:inline-block; } 
+#accountbar a { color:White; text-decoration:none; }
+#accountbar a:hover { border-bottom:1px dotted white; }
+#accountbar input { border:1px solid #aaa; padding:2px; }
+body:-moz-last-node #accountbar input[type="submit"] { padding:1px; } /* Firefox submit button size hack */
+
+#accountbar input[type="submit"]
+{
+	margin-left:-.4166em;
+	-moz-border-radius:0px 4px 4px 0px; /* Firefox */
+    border-radius:0px 4px 4px 0px;
+    cursor:pointer;
+    background-color: #eeeeee; /* Fallback (Opera): */
+    background: -moz-linear-gradient(top, #ffffff, #cccccc); /* Mozilla: */
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cccccc)); /* Chrome, Safari:*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#ffffff', EndColorStr='#cccccc', GradientType=0)"; /* IE8 */
+}
+
+#accountbar input[type="submit"]:hover
+{
+	background-color: #FFa460; /* Fallback (Opera): */
+	background: -moz-linear-gradient(top, #FFc470, #FF7f37); /* Mozilla: */
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFc470), to(#FF7f37)); /* Chrome, Safari:*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#FFc470', EndColorStr='#FF7f37', GradientType=0)"; /* IE8 */
+	border-color:#ff4400;
+}
+
+#IE #accountbar input[type="password"] { padding-top:1px; } /* IE password size hack */
+
+#accountbar input[type="password"], #accountbar input[type="text"] 
+{
+	border-right:0 none;
+    width: 7.5em;
+    margin-right:0px;
+}
+
+#searchdisplay { float:right; }
+#searchdisplay input[type="text"] { width:15em; }
+
+/* NAVIGATION MENU   
+----------------------------------------------------------*/
+#navigation
+{
+    padding: 2px 8px;
+    margin: 2px 0px;
+    display:inline-block;
+    background-color: #cccccc; /* Fallback (Opera): */
+    background: -moz-linear-gradient(top, #dddddd, #bbbbbb); /* Mozilla: */
+    background: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#bbbbbb)); /* Chrome, Safari:*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#dddddd', EndColorStr='#bbbbbb', GradientType=0)"; /* IE8 */
+    font-weight: bold;
+    border:1px solid black;
+}
+
+/* Admin menu
+-----------------------------------------------------------*/
+#adminmenu {float:left; }
+
+#adminmenu a  
+{
+	font-size:1.2em;
+	margin:6px 0px;
+	padding:2px 4px;
+	display:block; 
+	width:8.0em;
+	color: #000;
+	text-align:center;
+    text-decoration: none;
+    background-color: #c1d8e5; /* Fallback, for Opera, IE and older browsers */
+    background: -moz-linear-gradient(top, #efffff, #a1b8d5); /* Firefox */
+    background: -webkit-gradient(linear, left top, left bottom, from(#efffff), to(#a1b8d5)); /* Safari and Chrome */
+    -moz-border-radius:10px; /* Firefox */
+    border-radius:10px; /* CSS 3.0 */
+    -moz-box-shadow: 1px 1px 1px #000; /* Firefox */
+    -webkit-box-shadow: 1px 1px 1px #000; /* Safari and Chrome */
+    box-shadow: 1px 1px 1px #000; /* CSS 3.0 */
+}
+
+#adminmenu a:hover { color:#FF4400; }
+
+#adminmenu a:active
+{
+    background: -moz-linear-gradient(top, #7198c5, #fff); /* Firefox */
+    background: -webkit-gradient(linear, left top, left bottom, from(#7198c5), to(#fff)); /* Safari and Chrome */
+}
+
+#adminbody
+{
+	border:1px solid black;
+	padding:2px;
+	background-color:White;
+	margin-left:11em;
+	min-height:40em;
+}
+
+/* Spoiler element
+-----------------------------------------------------------*/
+
+div.spoiler { border:2px inset black; padding:0px 0px 1px 0px; background:#ddd;}
+div.spoiler>div { color:#ddd; } 
+div.spoiler>div.spoilertext { color:Black; display:none;} /* Javascript adds this class to the spoiler text.*/
+
+
+/*Embedded
+-----------------------------------------------------------*/
+
+div.video { position: relative; max-width:640px; }
+div.video>img { width: 100%; visibility:hidden; }
+div.video>object,div.video>iframe { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; }
+
+/* Post markup elements
+-----------------------------------------------------------*/
+
+div.code 
+{
+    white-space:pre;
+    overflow:auto;
+    max-height:750px;
+    width:98%;
+    border:1px inset #222;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+fieldset.quote
+{
+    margin-top:0px;
+    margin-left:auto;
+    margin-right:auto;
+    background:#E2E2EF;   
+    border:1px inset #222;
+    padding:5px;
+    width:95%;
+}
+
+/* Edit view 
+------------------------------------------------------------*/
+
+.Center { text-align:center;}
+.Center>div { margin-left:auto; margin-right:auto; }
+.Right { text-align:right; }
+.Right>div { margin-left:auto; margin-right:0px; }
+.Left { text-align:left; }
+.Justify { text-align:justify; }
+
+.Outline { border:#0B198C solid 1px; }
+
+div.Edit2
+{
+    background:white;
+    -moz-border-radius:5px; /* Firefox */
+    border-radius:5px;
+    margin:10px 10px 10px 10px;
+    padding:5px 5px 5px 5px;
+}
+
+Table.Edit2 td { border-style:none !important; padding: 1px 2px 1px 0px; }
+
+Table.Edit2 tr { border-style:none; padding: 1px 0px 1px 0px; }
+
+Table.Edit2 { border-style:none; width:100%; }
+
+div.Edit2 input { width:100%; }
+
+div.Edit2 textarea { width:100%; padding:0px 0px 0px 0px; height: 400px; }
+
+.Edit { background:#E1E4F2; }
+
+.Label { width:100px; }
+
+/* CATEGORY VIEW
+----------------------------------------------------------*/
+
+table.CategoryTable { margin-bottom:15px; }
+table.CategoryTable th a { color:White; text-decoration:none;  }
+table.CategoryTable th a:hover { color:White; text-decoration:underline; }
+table.CategoryTable td:first-child { font-weight:bold; }
+
+/* THREADS VIEW 
+----------------------------------------------------------*/
+table.Threads { table-layout:fixed; margin-bottom:2px;}
+
+col.TableIcon { width:2.08em; }
+
+.CategoryTable .Threads { width:5em; }
+.Replies { width:5em; }
+.LastPost { width:15em; }
+
+td.TableIcon { padding:0px; margin:0px; width:2.08em; }
+
+td.TableIcon img { vertical-align:bottom; width:2.08em; }
+
+/* POSTS VIEW
+----------------------------------------------------------*/
+
+table.Post
+{
+    margin:4px 0 2px 0;
+    border:#0B198C solid 1px;
+    table-layout:fixed;
+}
+
+#Post_1{ margin-top:0; }
+
+table.Post td, table.Post th { border:#0B198C solid 1px; }
+
+col.PostPoster
+{
+    width:120px;
+}
+
+td.PostPoster
+{
+    vertical-align:top;
+    width:100px;
+    background-color:#E1E4F2;
+}
+
+.PostTitle
+{
+    margin-bottom:-1px;
+    padding:6px 6px 6px 6px;
+    color:White;
+    background-color: #4B6CA6; /* Fallback (Opera): */
+    background: -moz-linear-gradient(top, #4B6CA6, #768FB9); /* Mozilla: */
+    background: -webkit-gradient(linear, left top, left bottom, from(#4B6CA6), to(#768FB9)); /* Chrome, Safari:*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#4B6CA6', EndColorStr='#768FB9', GradientType=0)"; /* IE8 */
+}
+
+.PostText
+{
+    white-space:pre-line;
+}
+
+/* PAGE AND POST MENUS
+----------------------------------------------------------*/
+ul.pagemenu, ul.postmenu
+{
+    position:relative;
+    float:right;
+    margin:0px;
+    text-align:right;
+    padding-left:0px;
+}
+
+ul.pagemenu li, ul.postmenu li
+{
+    display: inline;
+    list-style: none;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+ul.threadview { left:-1px; top:-1.85em; height:0px; }
+
+ul.threadviewbottom { left:-1px; top:0px; height:0px; }
+
+ul.threadlist, ul.postmenu { top:-0.2em; height:5px; }
+
+ul.postmenu a, ul.postmenu>li>div { padding:4px 8px; margin:0px 2px; }
+
+ul.threadview span, ul.threadview a { padding: 3px 4px; }
+
+ul.threadlist span, ul.threadlist a { padding: 2px 3px; }
+
+ul.pagemenu span, ul.pagemenu a { margin:0px 0px 0px 1px; outline:blue solid 1px; }
+
+ul.pagemenu span { background-color: #354F81; color: #fff; }
+
+ul.pagemenu a { background-color: #E1E4F2; color: #000; text-decoration: none; }
+
+ul.pagemenu a:hover { background-color: #fff; }
+
+ul.postmenu a, ul.postmenu>li>div
+{
+    display:inline;
+    color: #000;
+    text-decoration: none;
+    background-color: #c1d8e5; /* Fallback, for Opera, IE and older browsers */
+    background: -moz-linear-gradient(top, #efffff, #a1b8d5); /* Firefox */
+    background: -webkit-gradient(linear, left top, left bottom, from(#efffff), to(#a1b8d5)); /* Safari and Chrome */
+    -moz-border-radius:10px; /* Firefox */
+    border-radius:10px; /* CSS 3.0 */
+    -moz-box-shadow: 1px 1px 1px #000; /* Firefox */
+    -webkit-box-shadow: 1px 1px 1px #000; /* Safari and Chrome */
+    box-shadow: 1px 1px 1px #000; /* CSS 3.0 */
+}
+
+ul.postmenu a:hover { color:#FF4400; }
+
+ul.postmenu a:active
+{
+    background: -moz-linear-gradient(top, #7198c5, #fff); /* Firefox */
+    background: -webkit-gradient(linear, left top, left bottom, from(#7198c5), to(#fff)); /* Safari and Chrome */
+}
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset 
+{
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #CCC;
+}
+
+fieldset p 
+{
+    margin: 2px 12px 10px 10px;
+}
+
+
+
+/* TABLE
+----------------------------------------------------------*/
+
+table 
+{
+    width:100%;
+    border: solid 1px #354F81;
+    border-collapse: collapse;
+}
+
+table td 
+{
+    padding: 5px;   
+    border: solid 1px #354F81;
+    word-wrap:break-word; /* CSS3 */
+    overflow:hidden;
+}
+
+table td.Head, table th
+{
+    padding: 6px 5px;
+    text-align: left;
+    color:White;
+    background-color: #354F81; /* Fallback (Opera): */
+    background: -moz-linear-gradient(top, #354F81, #526894); /* Mozilla: */
+    background: -webkit-gradient(linear, left top, left bottom, from(#354F81), to(#526894)); /* Chrome, Safari:*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#354F81', EndColorStr='#526894', GradientType=0)"; /* IE 8 */  
+}
+
+/* ADMIN PANEL 
+----------------------------------------------------------*/
+
+.PermissionLinkList { margin-top:5px; table-layout:fixed; }
+
+.PermissionLinkList td { border-color:#999; padding: 1px; }
+
+.PermissionLinkList td.LinkEntry { padding: 1px 6px; }
+
+.PermissionLinkList td select {	width: 100%; }
+
+.PermissionLinkList td.TableButton { width:5em; }
+
+.PermissionLinkList td.TableButton input { width:100%; }
+
+div.FloatMiddle { text-align:center; }
+
+fieldset.FloatMiddle
+{
+	vertical-align:top;
+	text-align:left;
+	display:inline-block;
+	margin:3px;
+}
+
+fieldset.FloatMiddle select {	min-width:15em; }
+
+.FloatRight { float:right; }
+
+/* List tree */
+
+div.ListTree ul { margin:0px; padding:0 0 0 25px; list-style-type:none; }
+div.ListTree a { text-decoration:none; padding:1px;}
+
+#UpdateCategory { width: 12em; }
+#UpdateCategory input[type="text"] { width:100%; }
+
+#UpdateCategory div.NumberInput { margin: 2px 0;}
+#UpdateCategory div.NumberInput input { width: 4em;}
+
+#UserTable { margin-top:2em;}
+
+span.CurrentCategory a
+{
+	Color:White;
+	background-color:#3399ff;
+	
+}
+
+/* MISC  
+----------------------------------------------------------*/
+
+.entry { height:2.0em; margin:5px 0px;}
+.entry label { float:left; width: 10em; clear: left; }
+.entry input { float:left; margin-top:-0.30em; margin-right:10px; width:11em;}
+
+#infotitel
+{
+	border:1px solid black;
+	font-weight:bolder;
+	font-size:1.2em;
+	text-align:center;
+    padding:6px;
+    color:White;
+    background-color: #4B6CA6; /* Fallback (Opera): */
+    background: -moz-linear-gradient(top, #4B6CA6, #768FB9); /* Mozilla: */
+    background: -webkit-gradient(linear, left top, left bottom, from(#4B6CA6), to(#768FB9)); /* Chrome, Safari:*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#4B6CA6', EndColorStr='#768FB9', GradientType=0)"; /* IE8 */
+}
+
+#infobody
+{
+	margin-top:-1px;
+	border:1px solid black;
+	background-color:#ccc;
+	padding:5px;
+}
+
+#informational
+{
+	background-color:White;
+	width:40em;
+	margin:20px auto;
+	border:2px outset black;
+	text-align:center;
+	color:Black;
+	padding: 0px 30px 20px;
+}
+
+.infoentry
+{
+	width:40em;
+	background-color:#E1E4F2;
+	margin:10px auto;
+	padding:15px 30px;
+	border:2px outset black;
+	text-align:left;
+	color:Black;
+}
+
+.clear
+{
+    clear: both;
+}
+
+.error
+{
+    color:Red;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    padding: 2px;
+    background-color: #ffeeee;
+}
+
+.valid
+{
+    border: 1px solid #00ff00;
+    padding: 2px;
+    background-color: #eeffee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+.text-box
+{
+    width: 30em;
+}
+
+.text-box.multi-line
+{
+    height: 6.5em;
+}
+

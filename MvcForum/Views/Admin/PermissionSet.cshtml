@@ -1,0 +1,64 @@
+﻿@model AdminPermissionSetModel
+
+@{
+    ViewBag.Title = "Edit Permission Set";
+}
+
+
+@helper CheckboxHelper(string Name, System.Linq.Expressions.Expression<Func<AdminPermissionSetModel, bool>> Value)
+{
+    <div>@Html.CheckBoxFor(Value)@Name</div>
+}
+
+<div class="FloatMiddle">
+
+<fieldset class="FloatMiddle">
+    <div class="linkbox">
+        @foreach (var PermissionSet in Model.PermissionSets)
+        {
+            if (PermissionSet.ID == Model.PermissionSet.PermissionID)
+            {
+                <div>@PermissionSet.Name</div>
+            }
+            else
+            {
+                @Html.ActionLink(PermissionSet.Name, "PermissionSet", new { id = PermissionSet.ID })
+            }
+        }
+    </div>
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <input type="submit" name="DeletePermissions" value="Delete" @if(Model.PermissionLinkList.Count != 0){<text>disabled="disabled"</text>}/>
+            <input type="submit" name="NewPermissions" value="New" />
+        }
+    </div>
+</fieldset>
+<fieldset class="FloatMiddle">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.TextBoxFor(N => N.PermissionSet.Name, new { maxlength = 15 })
+        @CheckboxHelper("View", M => M.PermissionSet.AllowView)
+        @CheckboxHelper("Reply", M => M.PermissionSet.AllowReply)
+        @CheckboxHelper("Create Thread", M => M.PermissionSet.AllowNewThread)
+        @CheckboxHelper("Post Link", M => M.PermissionSet.AllowLink)
+        @CheckboxHelper("Post Picture", M => M.PermissionSet.AllowPicture)
+        @CheckboxHelper("Edit Own Posts", M => M.PermissionSet.AllowEditOwnPost)
+        @CheckboxHelper("Delete Own Posts", M => M.PermissionSet.AllowDeleteOwnPost)
+        @CheckboxHelper("Delete Own Threads", M => M.PermissionSet.AllowDeleteOwnThread)
+        @CheckboxHelper("Lock Threads", M => M.PermissionSet.AllowLockThread)
+        @CheckboxHelper("Move Threads", M => M.PermissionSet.AllowMoveThread)
+        @CheckboxHelper("Edit All Posts", M => M.PermissionSet.AllowEditAllPosts)
+        @CheckboxHelper("Delete All Posts", M => M.PermissionSet.AllowDeleteAllPosts)
+        @CheckboxHelper("Delete All Threads", M => M.PermissionSet.AllowDeleteAllThread)
+        <input type="submit" name="UpdatePermissions" value="Update" />
+    }
+</fieldset>
+
+</div>
+
+@{
+    Html.RenderPartial("PermissionLinkPartial", Model);
+}

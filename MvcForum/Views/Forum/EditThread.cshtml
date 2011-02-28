@@ -1,0 +1,42 @@
+﻿@model EditThreadViewModel
+           
+@{ ViewBag.Title = Model.ThreadName + ": Edit Thread";}
+
+
+@helper CheckboxHelper(string CheckBoxName, string Name, bool Checked, bool Disabled)
+{
+    <div><input type="checkbox" name="@CheckBoxName"@if (Checked) { <text>checked="checked"</text>} @if (Disabled) { <text>disabled="disabled"</text>}/>@Name</div>
+}
+
+<div id="infotitel">
+    Edit thread "@Model.ThreadName"
+</div>
+<div id="infobody">
+    <div id="informational">
+        <h3>Use the form below to edit the thread.</h3>
+        Note that deleting the thread is permanent and cannot be reversed.
+    </div>
+
+    <div class="infoentry">
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <div>
+            Thread Category:
+            <select name="MoveTo" @if(!Model.AllowMove){<text>disabled="disabled"</text>}>
+                <option selected="selected" value="@Model.CategoryID">
+                    @Model.CategoryName
+                </option>
+                @foreach (var Category in Model.ValidMoveDestinations)
+                {
+                    <option value="@Category.ID">
+                        @Category.Name
+                    </option>
+                }
+            </select>
+        </div>
+        @CheckboxHelper("Lock", "Lock Thread", Model.IsLocked, !Model.AllowLock)
+        @CheckboxHelper("Delete", "Delete Thread", false, !Model.AllowDelete)
+        <input type="submit" value="Edit Thread" name="confirmbutton"/>
+    } 
+    </div>
+</div>

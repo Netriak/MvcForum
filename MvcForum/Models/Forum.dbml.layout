@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.25, 8.75" name="Forum">
+  <DataContextMoniker Name="/ForumDataContext" />
+  <nestedChildShapes>
+    <classShape Id="3eedf8ba-ace9-4b73-a43d-af7d8fa442cc" absoluteBounds="2.875, 3.25, 2, 1.7708968098958335">
+      <DataClassMoniker Name="/ForumDataContext/Forum_Post" />
+      <nestedChildShapes>
+        <elementListCompartment Id="14b9040e-121d-43c7-864d-45eb81a4313b" absoluteBounds="2.8899999999999997, 3.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="939c202a-aff6-4677-a4e7-9e059536380e" absoluteBounds="0.5, 2.25, 2, 1.9631982421874996">
+      <DataClassMoniker Name="/ForumDataContext/Forum_User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="546887c5-0263-49a4-b0ac-1f3bc02ce19c" absoluteBounds="0.51500000000000012, 2.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.5 : 3.73159912109375); (2.875 : 3.73159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ForumDataContext/Forum_User/Forum_User_Forum_Post" />
+      <nodes>
+        <classShapeMoniker Id="939c202a-aff6-4677-a4e7-9e059536380e" />
+        <classShapeMoniker Id="3eedf8ba-ace9-4b73-a43d-af7d8fa442cc" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="c452dc69-621a-4ad6-bf9c-e5548c6de860" absoluteBounds="0.5, 5.75, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/ForumDataContext/Forum_UserRoleLink" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2fe02322-b459-42de-a306-abf8920f688c" absoluteBounds="0.51500000000000012, 6.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.5 : 4.2131982421875); (1.5 : 5.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ForumDataContext/Forum_User/Forum_User_Forum_UserRoleLink" />
+      <nodes>
+        <classShapeMoniker Id="939c202a-aff6-4677-a4e7-9e059536380e" />
+        <classShapeMoniker Id="c452dc69-621a-4ad6-bf9c-e5548c6de860" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="cb844a04-02b7-4b28-a772-946e0154bfb3" absoluteBounds="0.5, 0.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/ForumDataContext/Forum_ViewedPost" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aba0ee92-e201-4e7b-a234-c40410b444dc" absoluteBounds="0.51499999999999968, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.5 : 2.25); (1.5 : 1.8862939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ForumDataContext/Forum_User/Forum_User_Forum_ViewedPost" />
+      <nodes>
+        <classShapeMoniker Id="939c202a-aff6-4677-a4e7-9e059536380e" />
+        <classShapeMoniker Id="cb844a04-02b7-4b28-a772-946e0154bfb3" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="f0b3f922-9d99-44b6-bb16-ae56229ee2d4" absoluteBounds="2.875, 0.5, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/ForumDataContext/Forum_Thread" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f5f07639-4e5a-459e-aa40-af68cf60c33b" absoluteBounds="2.8899999999999997, 0.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.875 : 2.65549967447917); (3.875 : 3.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ForumDataContext/Forum_Thread/Forum_Thread_Forum_Post" />
+      <nodes>
+        <classShapeMoniker Id="f0b3f922-9d99-44b6-bb16-ae56229ee2d4" />
+        <classShapeMoniker Id="3eedf8ba-ace9-4b73-a43d-af7d8fa442cc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.875 : 1.19314697265625); (2.5 : 1.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ForumDataContext/Forum_Thread/Forum_Thread_Forum_ViewedPost" />
+      <nodes>
+        <classShapeMoniker Id="f0b3f922-9d99-44b6-bb16-ae56229ee2d4" />
+        <classShapeMoniker Id="cb844a04-02b7-4b28-a772-946e0154bfb3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.5 : 2.45274983723958); (2.875 : 2.45274983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ForumDataContext/Forum_User/Forum_User_Forum_Thread" />
+      <nodes>
+        <classShapeMoniker Id="939c202a-aff6-4677-a4e7-9e059536380e" />
+        <classShapeMoniker Id="f0b3f922-9d99-44b6-bb16-ae56229ee2d4" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="b0dc0e00-eed6-4481-9cc5-d8c7d83f1315" absoluteBounds="3.375, 5.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ForumDataContext/Forum_Role" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5050d05e-dc2b-42ab-9e8e-112d0d037b97" absoluteBounds="3.3899999999999997, 6.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.375 : 6.40949625651042); (2.5 : 6.40949625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ForumDataContext/Forum_Role/Forum_Role_Forum_UserRoleLink" />
+      <nodes>
+        <classShapeMoniker Id="b0dc0e00-eed6-4481-9cc5-d8c7d83f1315" />
+        <classShapeMoniker Id="c452dc69-621a-4ad6-bf9c-e5548c6de860" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="57402367-38f8-4e20-942f-3972792c3a3f" absoluteBounds="5.75, 0.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/ForumDataContext/Forum_Category" />
+      <nestedChildShapes>
+        <elementListCompartment Id="93da8818-624e-4d99-b3e0-dbb6cba8b895" absoluteBounds="5.765, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.75 : 1.48159912109375); (4.875 : 1.48159912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ForumDataContext/Forum_Category/Forum_Category_Forum_Thread" />
+      <nodes>
+        <classShapeMoniker Id="57402367-38f8-4e20-942f-3972792c3a3f" />
+        <classShapeMoniker Id="f0b3f922-9d99-44b6-bb16-ae56229ee2d4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.45863627929687 : 0.5); (6.45863627929687 : 0.25); (7.05523818359375 : 0.25); (7.05523818359375 : 0.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ForumDataContext/Forum_Category/Forum_Category_Forum_Category" />
+      <nodes>
+        <classShapeMoniker Id="57402367-38f8-4e20-942f-3972792c3a3f" />
+        <classShapeMoniker Id="57402367-38f8-4e20-942f-3972792c3a3f" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="ce4e32de-452f-4d4d-8ae9-fe9e405b5c43" absoluteBounds="0.5, 7.25, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/ForumDataContext/Forum_Session" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1458fb07-b696-422b-a549-1531cad8adc1" absoluteBounds="0.51500000000000057, 7.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(0.50150915249399 : 4.2131982421875); (0.125 : 4.58970739468149); (0.125 : 6.87408254422075); (0.500917455779247 : 7.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ForumDataContext/Forum_User/Forum_User_Forum_Session" />
+      <nodes>
+        <classShapeMoniker Id="939c202a-aff6-4677-a4e7-9e059536380e" />
+        <classShapeMoniker Id="ce4e32de-452f-4d4d-8ae9-fe9e405b5c43" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="34be8a9e-aa19-4549-8e05-19db26d145bd" absoluteBounds="5.625, 3.375, 2, 1.3862939453125">
+      <DataClassMoniker Name="/ForumDataContext/Forum_PermissionsLink" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3be1d22c-ba39-4c18-99aa-5ad0231cfee3" absoluteBounds="5.64, 3.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.6875 : 2.4631982421875); (6.6875 : 3.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ForumDataContext/Forum_Category/Forum_Category_Forum_PermissionsLink" />
+      <nodes>
+        <classShapeMoniker Id="57402367-38f8-4e20-942f-3972792c3a3f" />
+        <classShapeMoniker Id="34be8a9e-aa19-4549-8e05-19db26d145bd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.375 : 6.66429768880208); (6.625 : 6.66429768880208); (6.625 : 4.7612939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ForumDataContext/Forum_Role/Forum_Role_Forum_PermissionsLink" />
+      <nodes>
+        <classShapeMoniker Id="b0dc0e00-eed6-4481-9cc5-d8c7d83f1315" />
+        <classShapeMoniker Id="34be8a9e-aa19-4549-8e05-19db26d145bd" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="b823a99a-7e5e-4688-996b-9abea7a52e8e" absoluteBounds="9, 3.375, 2, 3.6939111328124996">
+      <DataClassMoniker Name="/ForumDataContext/Forum_Permission" />
+      <nestedChildShapes>
+        <elementListCompartment Id="57a338f4-f728-4a9b-a74e-973e5bb7aca8" absoluteBounds="9.015, 3.835, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9 : 4.06814697265625); (7.625 : 4.06814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ForumDataContext/Forum_Permission/Permission_Forum_PermissionsLink" />
+      <nodes>
+        <classShapeMoniker Id="b823a99a-7e5e-4688-996b-9abea7a52e8e" />
+        <classShapeMoniker Id="34be8a9e-aa19-4549-8e05-19db26d145bd" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

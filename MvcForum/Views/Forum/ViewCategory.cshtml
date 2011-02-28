@@ -1,0 +1,79 @@
+﻿@model CategoryViewModel
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+@helper RenderSubForums(string CategoryName, IEnumerable<SubCategoryModel> SubForums, int CategoryID = 0)
+{
+    <table class="CategoryTable">
+        <tr>
+            <th>
+                @if (CategoryID > 0)
+                {
+                    @Html.ActionLink(CategoryName, "ViewCategory", new { id = CategoryID, page = 1 })
+                } else {
+                    @CategoryName
+                }
+            </th>
+            <th class="Center Threads">Threads</th>
+            <th class="Center Replies">Posts</th>
+            <th class="Center LastPost">Last Post</th>
+        </tr>
+        @foreach (var item in SubForums)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, "ViewCategory", new { id = item.id, page = 1 }, new { @class = "ThreadTitle" })
+                </td>
+                <td class="Center Threads">
+                    @item.ThreadCount
+                </td>
+                <td class="Center Replies">
+                    @item.PostCount
+                </td>
+                <td class="Center LastPost">
+                    @if (item.ThreadCount > 0)
+                    {
+                        @item.LastPostTime
+                    } else {
+                        @:Never
+                    }
+                </td>
+            </tr>
+        } 
+    </table>
+}
+
+@if (Model.SubCategories.Count > 0 && Model.page == 1)
+{
+    if (Model.AllowPosts)
+    {
+        @RenderSubForums("Sub-forums", Model.SubCategories);
+        <br />                                                           
+    }
+    else
+    {
+        var SubCategories = Model.SubCategories.FindAll(C => !C.AllowPosts);
+        var GeneralTitle = "General";
+        if (SubCategories.Count == 0) { GeneralTitle = Model.Name; }
+        var GeneralSubCategories = Model.SubCategories.FindAll(C => C.AllowPosts);
+        if (GeneralSubCategories.Count > 0)
+        {
+            @RenderSubForums(GeneralTitle, GeneralSubCategories);
+        }
+        foreach (var Category in SubCategories)
+        {
+            @RenderSubForums(Category.Name, Category.SubCategories, Category.id);
+        }
+    }
+}
+
+@if (Model.AllowPosts)
+{
+    @Html.PageNavigationList("ViewCategory", Model.page, Model.PageCount, (int)Model.id, "threadview")
+    Html.RenderPartial("ThreadListPartial", Model.Threads);
+    @Html.PageNavigationList("ViewCategory", Model.page, Model.PageCount, (int)Model.id, "threadview threadviewbottom") 
+    @Html.ImageActionLink("New thread", "Images/newthread.gif", "NewThread", new { id = Model.id })
+}
+

@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Forum" Class="ForumDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Forum.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ForumConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Posts" Member="Forum_Posts">
+    <Type Name="Forum_Post">
+      <Column Name="PostID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PosterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ThreadID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PostText" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="TimeStamp" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Association Name="Forum_User_Forum_Post" Member="Forum_User" ThisKey="PosterID" OtherKey="UserID" Type="Forum_User" IsForeignKey="true" />
+      <Association Name="Forum_Thread_Forum_Post" Member="Forum_Thread" ThisKey="ThreadID" OtherKey="ThreadID" Type="Forum_Thread" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Forum_Users">
+    <Type Name="Forum_User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="Approved" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordHash" Type="System.String" DbType="Char(44) NOT NULL" CanBeNull="false" />
+      <Column Name="Salt" Type="System.String" DbType="Char(12) NOT NULL" CanBeNull="false" />
+      <Association Name="Forum_User_Forum_Post" Member="Forum_Posts" ThisKey="UserID" OtherKey="PosterID" Type="Forum_Post" />
+      <Association Name="Forum_User_Forum_UserRoleLink" Member="Forum_UserRoleLinks" ThisKey="UserID" OtherKey="UserID" Type="Forum_UserRoleLink" />
+      <Association Name="Forum_User_Forum_ViewedPost" Member="Forum_ViewedPosts" ThisKey="UserID" OtherKey="UserID" Type="Forum_ViewedPost" />
+      <Association Name="Forum_User_Forum_Thread" Member="Forum_Threads" ThisKey="UserID" OtherKey="PosterID" Type="Forum_Thread" />
+      <Association Name="Forum_User_Forum_Session" Member="Forum_Sessions" ThisKey="UserID" OtherKey="UserID" Type="Forum_Session" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserRoleLink" Member="Forum_UserRoleLinks">
+    <Type Name="Forum_UserRoleLink">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Forum_User_Forum_UserRoleLink" Member="Forum_User" ThisKey="UserID" OtherKey="UserID" Type="Forum_User" IsForeignKey="true" />
+      <Association Name="Forum_Role_Forum_UserRoleLink" Member="Forum_Role" ThisKey="RoleID" OtherKey="RoleID" Type="Forum_Role" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ViewedPosts" Member="Forum_ViewedPosts">
+    <Type Name="Forum_ViewedPost">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ThreadID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LastPost" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Forum_User_Forum_ViewedPost" Member="Forum_User" ThisKey="UserID" OtherKey="UserID" Type="Forum_User" IsForeignKey="true" />
+      <Association Name="Forum_Thread_Forum_ViewedPost" Member="Forum_Thread" ThisKey="ThreadID" OtherKey="ThreadID" Type="Forum_Thread" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Threads" Member="Forum_Threads">
+    <Type Name="Forum_Thread">
+      <Column Name="ThreadID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PosterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="LastPostTime" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="Posts" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Locked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Forum_Thread_Forum_Post" Member="Forum_Posts" ThisKey="ThreadID" OtherKey="ThreadID" Type="Forum_Post" />
+      <Association Name="Forum_Thread_Forum_ViewedPost" Member="Forum_ViewedPosts" ThisKey="ThreadID" OtherKey="ThreadID" Type="Forum_ViewedPost" />
+      <Association Name="Forum_User_Forum_Thread" Member="Forum_User" ThisKey="PosterID" OtherKey="UserID" Type="Forum_User" IsForeignKey="true" />
+      <Association Name="Forum_Category_Forum_Thread" Member="Forum_Category" ThisKey="CategoryID" OtherKey="CategoryID" Type="Forum_Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Role" Member="Forum_Roles">
+    <Type Name="Forum_Role">
+      <Column Name="RoleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="CanBeDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowSearch" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Forum_Role_Forum_UserRoleLink" Member="Forum_UserRoleLinks" ThisKey="RoleID" OtherKey="RoleID" Type="Forum_UserRoleLink" />
+      <Association Name="Forum_Role_Forum_PermissionsLink" Member="Forum_PermissionsLinks" Storage="_PermissionsLinks" ThisKey="RoleID" OtherKey="RoleID" Type="Forum_PermissionsLink" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Categories" Member="Forum_Categories">
+    <Type Name="Forum_Category">
+      <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Priority" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AllowPosts" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="InheritPermissions" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Forum_Category_Forum_Thread" Member="Forum_Threads" ThisKey="CategoryID" OtherKey="CategoryID" Type="Forum_Thread" />
+      <Association Name="Forum_Category_Forum_Category" Member="Forum_Categories" ThisKey="CategoryID" OtherKey="ParentID" Type="Forum_Category" />
+      <Association Name="Forum_Category_Forum_PermissionsLink" Member="Forum_PermissionsLinks" Storage="_PermissionsLinks" ThisKey="CategoryID" OtherKey="CategoryID" Type="Forum_PermissionsLink" />
+      <Association Name="Forum_Category_Forum_Category" Member="Category1" ThisKey="ParentID" OtherKey="CategoryID" Type="Forum_Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sessions" Member="Forum_Sessions">
+    <Type Name="Forum_Session">
+      <Column Name="SessionGUID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Forum_User_Forum_Session" Member="Forum_User" ThisKey="UserID" OtherKey="UserID" Type="Forum_User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PermissionsLink" Member="Forum_PermissionsLinks">
+    <Type Name="Forum_PermissionsLink">
+      <Column Name="PermissionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Forum_Category_Forum_PermissionsLink" Member="Forum_Category" ThisKey="CategoryID" OtherKey="CategoryID" Type="Forum_Category" IsForeignKey="true" />
+      <Association Name="Forum_Role_Forum_PermissionsLink" Member="Forum_Role" ThisKey="RoleID" OtherKey="RoleID" Type="Forum_Role" IsForeignKey="true" />
+      <Association Name="Permission_Forum_PermissionsLink" Member="Forum_Permission" ThisKey="PermissionID" OtherKey="PermissionID" Type="Forum_Permission" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Permissions" Member="Forum_Permissions">
+    <Type Name="Forum_Permission">
+      <Column Name="PermissionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AllowView" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowNewThread" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowReply" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowEditOwnPost" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowLink" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowPicture" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowEditAllPosts" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowDeleteOwnThread" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowDeleteAllThread" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowDeleteOwnPost" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowDeleteAllPosts" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowLockThread" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowMoveThread" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Permission_Forum_PermissionsLink" Member="Forum_PermissionsLinks" ThisKey="PermissionID" OtherKey="PermissionID" Type="Forum_PermissionsLink" />
+    </Type>
+  </Table>
+</Database>

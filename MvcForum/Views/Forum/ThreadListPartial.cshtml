@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ThreadInfoViewModel>
+
+<table class="Threads">
+    <colgroup>
+    <col class="TableIcon"/>
+    <col />
+    <col class="Replies"/>
+    <col class="LastPost" />
+    </colgroup>
+    <tr>
+        <th class="TableIcon"></th>
+        <th> Thread title</th>
+        <th class="Center">Replies</th>
+        <th class="Center">Last Post</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="TableIcon">
+                @{
+                    int nDif = item.PostCount - item.LastViewedPost;
+                    if (nDif <= 0)
+                    {
+                        if (item.Locked)
+                        {
+                            @Html.Image("Locked: No new posts", "Images/forum_old_lock.gif")
+                        }
+                        else
+                        { 
+                            @Html.Image("No new posts", "Images/forum_old.gif")
+                        }
+                    }
+                    else
+                    {
+                        if (item.Locked)
+                        { 
+                            @Html.Image(String.Format("Locked: {0} new post{1}", nDif, nDif == 1 ? "" : "s"), "Images/forum_new_lock.gif")
+                        }
+                        else
+                        { 
+                            @Html.ImageActionLink(String.Format("{0} new post{1}", nDif, nDif == 1 ? "" : "s"), "Images/forum_new.gif", "ViewThread", new { id = item.ThreadID, page = item.LastViewedPostPage }, String.Format("Post_{0}", item.LastViewedPostID))
+                        }
+                    }
+                }
+            </td>
+            <td class="ThreadTitle">
+                @Html.PageNavigationList("ViewThread", 0, item.PageCount, item.ThreadID, "threadlist")
+                @if (nDif > 0)
+                { 
+                    @:<strong>  
+                }
+                @Html.ActionLink(item.ThreadTitle, "ViewThread", new { id = item.ThreadID }, new { @class = "ThreadTitle" })
+                @if (nDif > 0)
+                {
+                    @:</strong> 
+                }
+            </td>
+            <td class="Center Replies">
+                @(item.PostCount - 1)
+            </td>
+            <td class="Center LastPost">
+                @item.LastPostTime
+            </td>
+        </tr>
+    }
+</table>

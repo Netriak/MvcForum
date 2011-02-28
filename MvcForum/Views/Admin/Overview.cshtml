@@ -1,0 +1,63 @@
+﻿@model AdminOverviewModel
+
+@{ ViewBag.Title = "Overview"; }
+
+@helper RenderCategoryTree(AdminCategory Root)
+{
+    @Html.ActionLink(Root.Name, "Category", new { id = Root.id }) 
+    <ul>
+        @foreach (var Category in Root.Children)
+        {
+            <li>
+                @RenderCategoryTree(Category)
+            </li>
+        }
+    </ul>
+}
+
+<div class="FloatMiddle">
+    <fieldset class="FloatMiddle">
+        <legend>Categories</legend>
+        <div class="ListTree">
+            @RenderCategoryTree(Model.RootCategory)
+        </div>
+    </fieldset>
+    <fieldset class="FloatMiddle">
+        <legend>User Groups</legend>
+        <div class="linkbox">
+            @foreach (var Group in Model.UserGroups)
+            {
+                @Html.ActionLink(Group.Name, "UserGroup", new { id = Group.ID, page = Model.page })
+            }
+        </div>
+    </fieldset>
+    <fieldset class="FloatMiddle">
+        <legend>Permission Sets</legend>
+        <div class="linkbox">
+            @foreach (var PermissionSet in Model.PermissionSets)
+            {
+                @Html.ActionLink(PermissionSet.Name, "PermissionSet", new { id = PermissionSet.ID })
+            }
+        </div>
+    </fieldset>
+
+    <fieldset class="FloatMiddle">
+        <legend>Users</legend>
+        @Html.PageNavigationList("", Model.page, Model.LastPage, 0, "threadview threadviewbottom")
+        <table id="UserTable">
+            @foreach (var User in Model.Users)
+            {
+                <tr>
+                    <td>
+                        @User.Name
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "User", new { id = User.ID})
+                    </td>
+                </tr>
+            }
+        </table>
+    </fieldset>
+    
+    
+</div>

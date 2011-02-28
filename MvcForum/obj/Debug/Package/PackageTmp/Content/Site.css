@@ -1,0 +1,508 @@
+﻿body
+{
+    background-color: #426493;
+    font-size: .75em;
+    font-family: Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+    color: Black;
+}
+
+a:link, a:visited
+{
+    color: #22229C;
+    text-decoration: underline;
+}
+a:hover, a:active
+{
+    color: #FF4400;
+    text-decoration: underline;
+}
+
+a.ThreadTitle
+{
+    text-decoration:none;
+}
+
+.Inherit
+{
+    color:inherit !important;
+    text-decoration:inherit !important;
+}
+
+p, ul
+{
+    margin-bottom: 20px;
+    line-height: 1.6em;
+}
+
+a.ImageLink img
+{
+    border-style:none;
+}
+
+div.quote
+{
+    margin-left:auto;
+    margin-right:auto;
+    background:#E2E2EF;   
+    border:1px inset #222;
+    padding:5px;
+    width:90%;
+}
+
+.u { text-decoration:underline; }
+
+img { max-width:100%; }
+
+.hidden { display:none !important; }
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 1.5em;
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1
+{
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+h2
+{
+    padding: 0 0 10px 0;
+}
+h3
+{
+    font-size: 1.2em;
+}
+h4
+{
+    font-size: 1.1em;
+}
+h5, h6
+{
+    font-size: 1em;
+}
+
+/* this rule styles <h2> tags that are the 
+first child of the left and right table columns */
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+    margin-top: 0;
+}
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+/* you can specify a greater or lesser percentage for the 
+page width. Or, you can specify an exact pixel width. */
+.page
+{
+    width: 90%;
+    max-width:1300px;/* Too wide a page doesn't read comfortably*/
+    min-width:600px; /* Better to create a scrollbar than to destroy the layout completely*/
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#header
+{
+    position: relative;
+    margin-bottom: 0px;
+    color: #000;
+    padding: 0;
+}
+
+#header h1
+{
+    font-weight: bold;
+    padding: 5px 0;
+    margin: 0;
+    color: #fff;
+    border: none;
+    line-height: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px !important;
+}
+
+#main
+{
+    padding: 30px 30px 15px 30px;
+    background-color: #fff;
+    -moz-border-radius:10px; /* Firefox */
+    border-radius:10px; 
+}
+
+#footer
+{
+    color: #999;
+    padding: 10px 0;
+    text-align: center;
+    line-height: normal;
+    margin: 0;
+    font-size: .9em;
+}
+
+/* Spoiler element
+-----------------------------------------------------------*/
+
+div.spoiler { border:2px inset black; padding:0px 0px 1px 0px; background:#ddd;}
+div.spoiler>div { color:#ddd; } 
+div.spoiler>div.spoilertext { color:Black; display:none;} /* Javascript adds this class to the spoiler text.*/
+
+
+/*Embedded
+-----------------------------------------------------------*/
+
+div.video { position: relative; max-width:640px; }
+div.video>img { width: 100%; visibility:hidden; }
+div.video>object,div.video>iframe { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; }
+
+/* Edit view 
+------------------------------------------------------------*/
+
+.Center { text-align:center; }
+.Right { text-align:right; }
+.Left { text-align:left; }
+.Justify { text-align:justify; }
+
+.Outline { border:#0B198C solid 1px; }
+
+div.Edit2
+{
+    background:white;
+    -moz-border-radius:5px; /* Firefox */
+    border-radius:5px;
+    margin:10px 10px 10px 10px;
+    padding:5px 5px 5px 5px;
+}
+
+Table.Edit2 td { border-style:none !important; padding: 1px 2px 1px 0px; }
+
+Table.Edit2 tr { border-style:none; padding: 1px 0px 1px 0px; }
+
+Table.Edit2 { border-style:none; width:100%; }
+
+div.Edit2 input { width:100%; }
+
+div.Edit2 textarea { width:100%; padding:0px 0px 0px 0px; height: 400px; }
+
+.Edit { background:#E1E4F2; }
+
+.Label { width:100px; }
+
+/* THREADS VIEW 
+----------------------------------------------------------*/
+table.Threads { table-layout:fixed; }
+
+col.TableIcon { width:2.08em; }
+
+col.Replies { width:5em; }
+
+col.LastPost { width:15em; }
+
+td.TableIcon { padding:0px; margin:0px; width:2.08em; }
+
+td.TableIcon img { vertical-align:bottom; width:2.08em; }
+
+/* POSTS VIEW
+----------------------------------------------------------*/
+
+table.Post
+{
+    margin:4px 0 2px 0;
+    border:#0B198C solid 1px;
+    table-layout:fixed;
+}
+
+#Post_1{ margin-top:0; }
+
+table.Post td, table.Post th { border:#0B198C solid 1px; }
+
+col.PostPoster
+{
+    width:120px;
+}
+
+td.PostPoster
+{
+    vertical-align:top;
+    width:100px;
+    background-color:#E1E4F2;
+}
+
+.PostTitle
+{
+    margin-bottom:-1px;
+    padding:6px 6px 6px 6px;
+    color:White;
+    background-color: #4B6CA6; /* Fallback (Opera): */
+    background: -moz-linear-gradient(top, #4B6CA6, #768FB9); /* Mozilla: */
+    background: -webkit-gradient(linear, left top, left bottom, from(#4B6CA6), to(#768FB9)); /* Chrome, Safari:*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#4B6CA6', EndColorStr='#768FB9', GradientType=0)"; /* IE8 */
+}
+
+.PostText
+{
+    white-space:pre-line;
+}
+
+/* PAGE AND POST MENUS
+----------------------------------------------------------*/
+ul.pagemenu, ul.postmenu
+{
+    position:relative;
+    float:right;
+    margin:0px;
+    text-align:right;
+}
+
+ul.pagemenu li, ul.postmenu li
+{
+    display: inline;
+    list-style: none;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+ul.threadview { left:-1px; top:-1.85em; height:0px; }
+
+ul.threadviewbottom { left:-1px; top:0px; height:0px; }
+
+ul.threadlist, ul.postmenu { top:-0.2em; height:0px; }
+
+ul.postmenu a, ul.postmenu>li>div { padding:4px 8px; margin:0px 2px; }
+
+ul.threadview span, ul.threadview a { padding: 3px 4px; }
+
+ul.threadlist span, ul.threadlist a { padding: 2px 3px; }
+
+ul.pagemenu span, ul.pagemenu a { margin:0px 0px 0px 1px; outline:blue solid 1px; }
+
+ul.pagemenu span { background-color: #354F81; color: #fff; }
+
+ul.pagemenu a { background-color: #E1E4F2; color: #000; text-decoration: none; }
+
+ul.pagemenu a:hover { background-color: #fff; }
+
+ul.postmenu a, ul.postmenu>li>div
+{
+    display:inline;
+    color: #000;
+    text-decoration: none;
+    background-color: #c1d8e5; /* Fallback, for Opera, IE and older browsers */
+    background: -moz-linear-gradient(top, #efffff, #a1b8d5); /* Firefox */
+    background: -webkit-gradient(linear, left top, left bottom, from(#efffff), to(#a1b8d5)); /* Safari and Chrome */
+    -moz-border-radius:10px; /* Firefox */
+    border-radius:10px; /* CSS 3.0 */
+    -moz-box-shadow: 1px 1px 1px #000; /* Firefox */
+    -webkit-box-shadow: 1px 1px 1px #000; /* Safari and Chrome */
+    box-shadow: 1px 1px 1px #000; /* CSS 3.0 */
+}
+
+ul.postmenu a:hover { color:#FF4400; }
+
+ul.postmenu a:active
+{
+    background: -moz-linear-gradient(top, #7198c5, #fff); /* Firefox */
+    background: -webkit-gradient(linear, left top, left bottom, from(#7198c5), to(#fff)); /* Safari and Chrome */
+}
+
+/* TAB MENU   
+----------------------------------------------------------*/
+ul#menu
+{
+    top:-2px;
+    padding: 0 0 2px;
+    position: relative;
+    margin: 0;
+    text-align: left;
+    -moz-border-radius:10px; /* Firefox */
+    border-radius:10px; /* CSS3 */
+    width:100%;
+    background-color: white;
+    font-weight: bold;
+}
+
+ul#menu>li:first-child { padding-left:30px; }
+
+ul#menu>li { padding:0px 2px 0px 2px; display: inline; list-style: none; }
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset 
+{
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #CCC;
+}
+
+fieldset p 
+{
+    margin: 2px 12px 10px 10px;
+}
+
+legend 
+{
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 2px 4px 8px 4px;
+}
+
+input[type="text"] 
+{
+    width: 200px;
+    border: 1px solid #CCC;
+}
+
+input[type="password"] 
+{
+    width: 200px;
+    border: 1px solid #CCC;
+}
+
+/* TABLE
+----------------------------------------------------------*/
+
+table 
+{
+    width:100%;
+    border: solid 1px #e8eef4;
+    border-collapse: collapse;
+}
+
+table td 
+{
+    padding: 5px;   
+    border: solid 1px #e8eef4;
+    word-wrap:break-word; /* CSS3 */
+    overflow:hidden;
+}
+
+table td.Head, table th
+{
+    padding: 6px 5px;
+    text-align: left;
+    color:White;
+    background-color: #354F81; /* Fallback (Opera): */
+    background: -moz-linear-gradient(top, #354F81, #526894); /* Mozilla: */
+    background: -webkit-gradient(linear, left top, left bottom, from(#354F81), to(#526894)); /* Chrome, Safari:*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#354F81', EndColorStr='#526894', GradientType=0)"; /* IE 8 */  
+}
+
+/* MISC  
+----------------------------------------------------------*/
+.clear
+{
+    clear: both;
+}
+
+.error
+{
+    color:Red;
+}
+
+#menucontainer
+{
+    margin-top:60px;
+}
+
+div#title
+{
+    display:block;
+    float:left;
+    text-align:left;
+}
+
+#logindisplay
+{
+    font-size:1.1em;
+    display:block;
+    text-align:right;
+    margin:10px;
+    color:White;
+}
+
+#logindisplay a:link
+{
+    color: white;
+    text-decoration: underline;
+}
+
+#logindisplay a:visited
+{
+    color: white;
+    text-decoration: underline;
+}
+
+#logindisplay a:hover
+{
+    color: white;
+    text-decoration: none;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.valid
+{
+    border: 1px solid #00ff00;
+    background-color: #eeffee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+.display-label,
+.editor-label,
+.display-field,
+.editor-field
+{
+    margin: 0.5em 0;
+}
+
+.text-box
+{
+    width: 30em;
+}
+
+.text-box.multi-line
+{
+    height: 6.5em;
+}
+
+.tri-state
+{
+    width: 6em;
+}

@@ -1,0 +1,66 @@
+﻿@model ThreadViewModel
+
+@{
+    ViewBag.Title = Model.ThreadTitle;
+}
+
+<!-- Page navigator -->
+@Html.PageNavigationList("ViewThread", Model.Page, Model.LastPage, Model.Id, "threadview")
+<!-- Thread title -->
+<div class="PostTitle Outline">
+    <strong>@Model.ThreadTitle</strong>
+    @if (Model.AllowEditThread) 
+    { 
+        <ul class="postmenu">
+            <li>
+                @Html.ActionLink("Edit Thread", "EditThread", new { id = Model.Id })
+            </li>
+        </ul>
+    } 
+</div>
+@{int N = 0; }
+@foreach (var item in Model.PostList)
+{ 
+    <table id="Post_@(++N)" class="Post">
+        <colgroup>
+            <col class="PostPoster"/>
+            <col />
+        </colgroup>
+        <tr>
+            <td colspan="2" class="Head">
+                @item.PostTime.ToForumDateString() 
+                @if (!Model.Locked)
+                {
+                    <ul class="postmenu">
+                        @if (item.AllowDelete && (Model.Page > 1 || item != Model.PostList[0]))
+                        {
+                            <li>@Html.ActionLink("Delete", "DeletePost", new { id = item.PostID })</li>
+                        } 
+                        @if (item.AllowEdit)
+                        {
+                            <li>@Html.ActionLink("Edit", "Edit", new { id = item.PostID })</li>
+                        } 
+                        <li>@Html.ActionLink("Quote", "Reply", new { id = Model.Id, QuoteId = item.PostID })</li>
+                    </ul>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="PostPoster">
+                @item.Poster.Name 
+            </td>
+            <td class="PostText">@item.PostText</td>
+        </tr>
+    </table>
+} 
+<!-- Page navigator -->
+@Html.PageNavigationList("ViewThread", Model.Page, Model.LastPage, Model.Id, "threadview threadviewbottom") 
+@if (Model.Locked)
+{
+    <img alt="locked" src=@Url.Content("~/Content/Images/threadclosed.gif")/>
+}
+else
+{
+    @Html.ImageActionLink("Post reply", "Images/reply.gif", "Reply", new { id = Model.Id })
+}
+
