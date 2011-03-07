@@ -5,6 +5,8 @@ using System.Data.Linq.SqlClient;
 using System.Web;
 using System.Web.Security;
 using System.Text;
+using System.Data.Linq;
+using System.Linq.Expressions;
 
 namespace MvcForum.Models
 {
@@ -103,14 +105,14 @@ namespace MvcForum.Models
             return db.Forum_Categories.SingleOrDefault(C => C.CategoryID == id);
         }
 
-        public IQueryable<Forum_Thread> GetMatchingThreads(string MatchPattern)
-        {
-            return from T in db.Forum_Threads where SqlMethods.Like(T.Title, MatchPattern) select T;
-        }
-
         public IQueryable<Forum_Post> GetMatchingPosts(string MatchPattern)
         {
-            return from P in db.Forum_Posts where SqlMethods.Like(P.PostText, MatchPattern) select P;
+            return from S in db.udf_postsSearch(MatchPattern) join P in db.Forum_Posts on S.KEY equals P.PostID orderby S.RANK descending select P;
+        }
+
+        public IQueryable<Forum_Thread> GetMatchingThreads(string MatchPattern)
+        {
+            return from S in db.udf_threadsSearch(MatchPattern) join T in db.Forum_Threads on S.KEY equals T.ThreadID orderby S.RANK descending select T;
         }
 
         public void SetLastPost(Forum_Thread Thread, Forum_User User, int PostNumber, bool IncreaseOnly = true)

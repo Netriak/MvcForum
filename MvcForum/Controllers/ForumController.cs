@@ -78,18 +78,44 @@ namespace MvcForum.Controllers
         {
             using (ForumRespository db = new ForumRespository())
             {
-                var Threads = db.GetMatchingThreads(Search);
-                var Model = new SearchResultsViewModel() { SearchString = Search };
-
-                Model.AddNavigation("Search Results");
-                Model.ResultCount = Threads.Count();
-
                 Forum_User CurrentUser = GetCurrentUser(db);
+                
+                var Model = new SearchResultsViewModel() { SearchString = Search };
+                
+                Model.AddNavigation("Search Results");
 
                 if (!db.CheckRolePermissions(CurrentUser, R => R.AllowSearch))
                     return AuthenticationHelper.AccessDeniedView(Model);
 
+                var Posts = db.GetMatchingPosts(Search);
+                var Threads = db.GetMatchingThreads(Search);
+
+                Model.ResultCount = Posts.Count() + Threads.Count();
+
+                // Temp
+                int I = 0;
                 ThreadInfoModelFromThread(db, CurrentUser, Threads.Take(THREADS_PER_PAGE), Model.ThreadInfoList);
+                foreach (var Post in Posts.Take(POSTS_PER_PAGE))
+                {
+                    Model.PostInfoList.Add(new PostWithThread()
+                    {
+                        ThreadName = Post.Forum_Thread.Title,
+                        Post = new PostViewModel()
+                            {
+                                Locked = true,
+                                PostID = Post.PostID,
+                                PostNumber = ++I,
+                                PostText = PostParser.Parse(Post.PostText),
+                                PostTime = Post.TimeStamp,
+                                ThreadID = Post.ThreadID,
+                                Poster = new UserViewModel()
+                                {
+                                    Name = Post.Forum_User.Username,
+                                    UserID = Post.Forum_User.UserID
+                                }
+                            }
+                    });
+                }
 
                 return View("SearchResults", Model);
             }
@@ -260,16 +286,22 @@ namespace MvcForum.Controllers
                 if (model.Page > model.LastPage) return RedirectToAction("ViewThread", new { id = model.Id, page = model.LastPage }); // page greater than what exists equals redirect to last page.
                 IEnumerable<Forum_Post> Posts = Thread.Forum_Posts.Skip((model.Page - 1)* POSTS_PER_PAGE).Take(POSTS_PER_PAGE);
 
+                int PostNumber = 0;
+
                 foreach (Forum_Post Post in Posts)
                 {
                     PostViewModel PostModel = new PostViewModel();
+                    PostModel.Locked = model.Locked;
+                    PostModel.PostNumber = ++PostNumber;
+                    PostModel.ThreadID = model.Id;
                     PostModel.PostText = PostParser.Parse(Post.PostText);
                     PostModel.PostTime = Post.TimeStamp;
                     PostModel.Poster = new UserViewModel();
                     PostModel.PostID = Post.PostID;
                     PostModel.Poster.Name = Post.Forum_User.Username;
                     PostModel.Poster.UserID = Post.PosterID;
-                    PostModel.AllowDelete = db.CheckCategoryPermissions(Thread.Forum_Category, ThreadViewUser, P => (P.AllowDeleteOwnPost && Post.PosterID == ThreadViewUser.UserID && Post.PosterID != (int)BuildInUser.Guest) || P.AllowDeleteAllPosts);
+                    PostModel.AllowDelete = (PostNumber > 1 || model.Page > 1) && db.CheckCategoryPermissions(Thread.Forum_Category, ThreadViewUser, 
+                        P => (P.AllowDeleteOwnPost && Post.PosterID == ThreadViewUser.UserID && Post.PosterID != (int)BuildInUser.Guest) || P.AllowDeleteAllPosts);
                     PostModel.AllowEdit = db.CheckCategoryPermissions(Thread.Forum_Category, ThreadViewUser, P => (P.AllowEditOwnPost && Post.PosterID == ThreadViewUser.UserID && Post.PosterID != (int)BuildInUser.Guest) || P.AllowEditAllPosts);
                     model.PostList.Add(PostModel);
                 }

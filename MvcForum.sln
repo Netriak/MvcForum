@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Web Developer Express 2010
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcForum", "MvcForum\MvcForum.csproj", "{5361C406-7E1E-4775-886C-E512571BA720}"
 EndProject
 Global

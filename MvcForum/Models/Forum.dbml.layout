@@ -14,7 +14,7 @@
         <elementListCompartment Id="546887c5-0263-49a4-b0ac-1f3bc02ce19c" absoluteBounds="0.51500000000000012, 2.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.5 : 3.73159912109375); (2.875 : 3.73159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.5 : 3.73159912109375); (2.875 : 3.73159912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ForumDataContext/Forum_User/Forum_User_Forum_Post" />
       <nodes>
         <classShapeMoniker Id="939c202a-aff6-4677-a4e7-9e059536380e" />
@@ -27,7 +27,7 @@
         <elementListCompartment Id="2fe02322-b459-42de-a306-abf8920f688c" absoluteBounds="0.51500000000000012, 6.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.5 : 4.2131982421875); (1.5 : 5.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.5 : 4.2131982421875); (1.5 : 5.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ForumDataContext/Forum_User/Forum_User_Forum_UserRoleLink" />
       <nodes>
         <classShapeMoniker Id="939c202a-aff6-4677-a4e7-9e059536380e" />
@@ -40,7 +40,7 @@
         <elementListCompartment Id="aba0ee92-e201-4e7b-a234-c40410b444dc" absoluteBounds="0.51499999999999968, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.5 : 2.25); (1.5 : 1.8862939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.5 : 2.25); (1.5 : 1.8862939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ForumDataContext/Forum_User/Forum_User_Forum_ViewedPost" />
       <nodes>
         <classShapeMoniker Id="939c202a-aff6-4677-a4e7-9e059536380e" />
@@ -60,14 +60,14 @@
         <classShapeMoniker Id="3eedf8ba-ace9-4b73-a43d-af7d8fa442cc" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.875 : 1.19314697265625); (2.5 : 1.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.875 : 1.19314697265625); (2.5 : 1.19314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ForumDataContext/Forum_Thread/Forum_Thread_Forum_ViewedPost" />
       <nodes>
         <classShapeMoniker Id="f0b3f922-9d99-44b6-bb16-ae56229ee2d4" />
         <classShapeMoniker Id="cb844a04-02b7-4b28-a772-946e0154bfb3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.5 : 2.45274983723958); (2.875 : 2.45274983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.5 : 2.45274983723958); (2.875 : 2.45274983723958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ForumDataContext/Forum_User/Forum_User_Forum_Thread" />
       <nodes>
         <classShapeMoniker Id="939c202a-aff6-4677-a4e7-9e059536380e" />
@@ -146,8 +146,8 @@
         <elementListCompartment Id="57a338f4-f728-4a9b-a74e-973e5bb7aca8" absoluteBounds="9.015, 3.835, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(9 : 4.06814697265625); (7.625 : 4.06814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/ForumDataContext/Forum_Permission/Permission_Forum_PermissionsLink" />
+    <associationConnector edgePoints="[(9 : 4.06814697265625); (7.625 : 4.06814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ForumDataContext/Forum_Permission/Forum_Permission_Forum_PermissionsLink" />
       <nodes>
         <classShapeMoniker Id="b823a99a-7e5e-4688-996b-9abea7a52e8e" />
         <classShapeMoniker Id="34be8a9e-aa19-4549-8e05-19db26d145bd" />

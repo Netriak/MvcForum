@@ -1,0 +1,33 @@
+﻿@model PostViewModel
+
+<table id="Post_@(Model.PostNumber)" class="Post">
+    <colgroup>
+        <col class="PostPoster"/>
+        <col />
+    </colgroup>
+    <tr>
+        <td colspan="2" class="Head">
+            @Model.PostTime.ToForumDateString() 
+            @if (!Model.Locked)
+            {
+                <ul class="postmenu">
+                    @if (Model.AllowDelete)
+                    {
+                        <li>@Html.ActionLink("Delete", "DeletePost", new { id = Model.PostID })</li>
+                    } 
+                    @if (Model.AllowEdit)
+                    {
+                        <li>@Html.ActionLink("Edit", "Edit", new { id = Model.PostID })</li>
+                    } 
+                    <li>@Html.ActionLink("Quote", "Reply", new { id = Model.ThreadID, QuoteId = Model.PostID })</li>
+                </ul>
+            }
+        </td>
+    </tr>
+    <tr>
+        <td class="PostPoster">
+            @Model.Poster.Name 
+        </td>
+        <td class="PostText">@Model.PostText</td>
+    </tr>
+</table>

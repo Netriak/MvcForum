@@ -171,6 +171,18 @@ namespace MvcForum.Models
 				return this.GetTable<Forum_Permission>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.udf_postsSearch", IsComposable=true)]
+		public IQueryable<udf_postsSearchResult> udf_postsSearch([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(4000)")] string keywords)
+		{
+			return this.CreateMethodCallQuery<udf_postsSearchResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), keywords);
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.udf_threadsSearch", IsComposable=true)]
+		public IQueryable<udf_threadsSearchResult> udf_threadsSearch([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(4000)")] string keywords)
+		{
+			return this.CreateMethodCallQuery<udf_threadsSearchResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), keywords);
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Posts")]
@@ -2241,7 +2253,7 @@ namespace MvcForum.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Permission_Forum_PermissionsLink", Storage="_Forum_Permission", ThisKey="PermissionID", OtherKey="PermissionID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Forum_Permission_Forum_PermissionsLink", Storage="_Forum_Permission", ThisKey="PermissionID", OtherKey="PermissionID", IsForeignKey=true)]
 		public Forum_Permission Forum_Permission
 		{
 			get
@@ -2676,7 +2688,7 @@ namespace MvcForum.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Permission_Forum_PermissionsLink", Storage="_Forum_PermissionsLinks", ThisKey="PermissionID", OtherKey="PermissionID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Forum_Permission_Forum_PermissionsLink", Storage="_Forum_PermissionsLinks", ThisKey="PermissionID", OtherKey="PermissionID")]
 		public EntitySet<Forum_PermissionsLink> Forum_PermissionsLinks
 		{
 			get
@@ -2719,6 +2731,94 @@ namespace MvcForum.Models
 		{
 			this.SendPropertyChanging();
 			entity.Forum_Permission = null;
+		}
+	}
+	
+	public partial class udf_postsSearchResult
+	{
+		
+		private int _KEY;
+		
+		private System.Nullable<int> _RANK;
+		
+		public udf_postsSearchResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[KEY]", Storage="_KEY", DbType="Int NOT NULL")]
+		public int KEY
+		{
+			get
+			{
+				return this._KEY;
+			}
+			set
+			{
+				if ((this._KEY != value))
+				{
+					this._KEY = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RANK", DbType="Int")]
+		public System.Nullable<int> RANK
+		{
+			get
+			{
+				return this._RANK;
+			}
+			set
+			{
+				if ((this._RANK != value))
+				{
+					this._RANK = value;
+				}
+			}
+		}
+	}
+	
+	public partial class udf_threadsSearchResult
+	{
+		
+		private int _KEY;
+		
+		private System.Nullable<int> _RANK;
+		
+		public udf_threadsSearchResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[KEY]", Storage="_KEY", DbType="Int NOT NULL")]
+		public int KEY
+		{
+			get
+			{
+				return this._KEY;
+			}
+			set
+			{
+				if ((this._KEY != value))
+				{
+					this._KEY = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RANK", DbType="Int")]
+		public System.Nullable<int> RANK
+		{
+			get
+			{
+				return this._RANK;
+			}
+			set
+			{
+				if ((this._RANK != value))
+				{
+					this._RANK = value;
+				}
+			}
 		}
 	}
 }

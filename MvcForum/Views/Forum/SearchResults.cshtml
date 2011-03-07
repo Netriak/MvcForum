@@ -4,21 +4,38 @@
     ViewBag.Title = "Search Results";
     int Count = Model.ThreadInfoList.Count; 
 }
+<div id="infotitel">
+    You searched for @Model.SearchString
+</div>
+<div id="infobody">
+    <div id="informational">
+        <h3>
+            @if (@Model.ResultCount != 1)
+            {
+                @:There were @Model.ResultCount results
+            }
+            else
+            {
+                @:There was 1 result
+            }
+        </h3>
+        Said results are displayed below
+    </div>
+    @{
+        if (Count > 0)
+        {
+            Html.RenderPartial("ThreadListPartial", Model.ThreadInfoList);
+        }
+        foreach (var Post in Model.PostInfoList)
+        {
+            <div class="PostTitle Outline">
+                <strong>@Post.ThreadName</strong>
+            </div>
+            Html.RenderPartial("ViewPostPartial", Post.Post);
+        }
+    }  
+</div>
 
-You searched for @(Model.SearchString).
-@if (@Model.ResultCount != 1)
-{
-    @:There were @Model.ResultCount results.
-}
-else
-{
-    @:There was 1 result.
-}
-@if (Model.ResultCount > Count)
-{
-    @:However, the maximum number of returned search results is @(Count).
-}
-@if (Count > 0)
-{
-    Html.RenderPartial("ThreadListPartial", Model.ThreadInfoList);
-}
+
+    
+    

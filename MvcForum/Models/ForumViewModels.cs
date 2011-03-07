@@ -38,10 +38,21 @@ namespace MvcForum.Models
         public string SearchString;
         public int ResultCount;
         public List<ThreadInfoViewModel> ThreadInfoList = new List<ThreadInfoViewModel>();
+        public List<PostWithThread> PostInfoList = new List<PostWithThread>();
+    }
+
+    public class PostWithThread
+    {
+        public string ThreadName;
+        public PostViewModel Post;
     }
 
     public class PostViewModel
     {
+        public bool Locked;
+        public int Page;
+        public int ThreadID;
+        public int PostNumber;
         public int PostID;
         public MvcHtmlString PostText;
         public DateTime PostTime;
